@@ -5,9 +5,7 @@
     <title>The ACF Game</title>
 
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
-    <script src="climbing.js"></script>
-    <script src="kayaking.js"></script>
-    <script src="pigeon.js"></script>
+    <script id="js-file" src="null.js"></script>
 
     <style type="text/css">
         body {
@@ -15,20 +13,28 @@
         }
     </style>
     <script>
-        (function () {
-            var height = window.innerHeight;
-            var width = window.innerWidth;
-            var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-            game.state.add("Climbing", climbing);
-            game.state.add("Kayaking", kayaking);
-            game.state.add("Pigeon", pigeon);
+        function kayak() {
+            alert("1");
+            document.getElementById("js-file").src = "kayaking.js";
+            alert("2");
+            body.reload();
+            alert("3");
+        }
+        function climbing() {
 
-            game.state.start("Kayaking");
-        })();
+        }
+        function pigeon() {
+
+        }
     </script>
+   
 </head>
 <body>
-
+    <div>
+        <h1 onclick="pigeon();">Start Pigeon</h1>
+        <h1 onclick="kayak();">Start Kayak</h1>
+        <h1 onclick="climbing();">Start Climbing</h1>
+    </div>
 
 
 </body>
