@@ -1,10 +1,35 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8" />
+    <title>The ACF Game</title>
+
+    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+    <script src="climbing.js"></script>
+    <script src="kayaking.js"></script>
+    <script src="pigeon.js"></script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+    <script>
+        (function () {
+            var height = window.innerHeight;
+            var width = window.innerWidth;
+            var game = new Phaser.Game(width, height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+            game.state.add("Climbing", climbing);
+            game.state.add("Kayaking", kayaking);
+            game.state.add("Pigeon", pigeon);
+
+            game.state.start("Kayaking");
+        })();
+    </script>
 </head>
 <body>
+
+
 
 </body>
 </html>
