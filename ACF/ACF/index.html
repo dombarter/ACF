@@ -5,7 +5,11 @@
     <title>The ACF Game</title>
 
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
-    <script id="js-file" src="null.js"></script>
+    <script id="js-file" src="acf.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+
 
     <style type="text/css">
         body {
@@ -13,29 +17,100 @@
         }
     </style>
     <script>
-        function kayak() {
-            alert("1");
-            document.getElementById("js-file").src = "kayaking.js";
-            alert("2");
-            body.reload();
-            alert("3");
-        }
-        function climbing() {
+        var interval;
+        function circle(number) {
 
-        }
-        function pigeon() {
+            document.getElementById("circle1").src = "img/empty-circle.png";
+            document.getElementById("circle2").src = "img/empty-circle.png";
+            document.getElementById("circle3").src = "img/empty-circle.png";
 
+            document.getElementById("climbing").style.display = "none";
+            document.getElementById("pigeon").style.display = "none";
+            document.getElementById("kayaking").style.display = "none";
+
+            clearInterval(interval);
+
+            if (number == 1) {
+                document.getElementById("back-img").src = "img/climbing-artwork.png";
+                document.getElementById("circle1").src = "img/full-circle.png";
+                document.getElementById("climbing").style.display = "block";
+            }
+            else if (number == 2) {
+                document.getElementById("back-img").src = "img/pigeon-artwork.png";
+                document.getElementById("circle2").src = "img/full-circle.png";
+                document.getElementById("pigeon").style.display = "block";
+            }
+            else if (number == 3) {
+                document.getElementById("back-img").src = "img/kayak-artwork.png";
+                document.getElementById("circle3").src = "img/full-circle.png";
+                document.getElementById("kayaking").style.display = "block";
+            }
+        }
+        function backgroundMove() {
+            var counter = 2;
+            interval = setInterval(function () {
+                document.getElementById("circle1").src = "img/empty-circle.png";
+                document.getElementById("circle2").src = "img/empty-circle.png";
+                document.getElementById("circle3").src = "img/empty-circle.png";
+
+                document.getElementById("climbing").style.display = "none";
+                document.getElementById("pigeon").style.display = "none";
+                document.getElementById("kayaking").style.display = "none";
+
+
+                if (counter == 1) {
+                    document.getElementById("back-img").src = "img/climbing-artwork.png";
+                    document.getElementById("circle1").src = "img/full-circle.png";
+                    document.getElementById("climbing").style.display = "block";
+                }
+                else if (counter == 2) {
+                    document.getElementById("back-img").src = "img/pigeon-artwork.png";
+                    document.getElementById("circle2").src = "img/full-circle.png";
+                    document.getElementById("pigeon").style.display = "block";
+                }
+                else if (counter == 3) {
+                    document.getElementById("back-img").src = "img/kayak-artwork.png";
+                    document.getElementById("circle3").src = "img/full-circle.png";
+                    document.getElementById("kayaking").style.display = "block";
+                }
+                var newCounter = counter + 1;
+                if (newCounter > 3) {
+                    counter = 1;
+                }
+                else {
+                    counter = newCounter;
+                }
+            }, 3500);
         }
     </script>
-   
 </head>
-<body>
-    <div>
-        <h1 onclick="pigeon();">Start Pigeon</h1>
-        <h1 onclick="kayak();">Start Kayak</h1>
-        <h1 onclick="climbing();">Start Climbing</h1>
+<body onload="backgroundMove();">
+    <div id="main-page">
+
+        <img src="img/climbing-artwork.png" id="back-img" />
+
+        <div class="content-parent">
+            <div class="content-child">
+                <div class="play-game" id="climbing" onclick="gameGo('climbing');">
+                    <h1>Go Climbing!</h1>
+                </div>
+                <div class="play-game" id="pigeon" onclick="gameGo('pigeon');" style="display:none">
+                    <h1>Go Clay Pigeon Shooting!</h1>
+                </div>
+                <div class="play-game" id="kayaking" onclick="gameGo('kayaking');" style="display:none">
+                    <h1>Go Kayaking!</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="circle-bar-holder">
+            <div id="circle-bar">
+                <img src="img/full-circle.png" id="circle1" onclick="circle(1);" />
+                <img src="img/empty-circle.png" id="circle2" onclick="circle(2);" />
+                <img src="img/empty-circle.png" id="circle3" onclick="circle(3);" />
+            </div>
+        </div>
+
     </div>
-
-
 </body>
 </html>
